@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Trivia Game Harder</title>
+
+	<!-- This is the link to the Bootstrap CDN -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<!-- This links my HTML document to the CSS where I have made overrides to bootstrap.  -->
+	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+	<!-- This links to JQuery online. -->
+	<script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
+  	crossorigin="anonymous"></script>
+
+</head>
+<body>
+<div class="row">
+	<div class="col-sm-3"></div>
+	<div class="col-sm-6">
+		<div id="timeAllowed">
+		
+		</div>
+	</div>
+	
+
+	<div class="col-sm-3"></div>
+</div>
+	<div class="row" id="headerRow">
+		<div class="jumbotron">
+			<div class="row">
+
+				<div class="col-sm-3">
+		
+				</div>
+
+				<div class="col-sm-6">
+					<h1>The Dark Knight</h1>
+
+		  			<p>Here, you will need to become the worlds greatest detective to solve the answers to these questions. Gotham is counting on you, Bruce...</p>
+
+		  			<button type="button" class="btn btn-secondary btn-lg" id="suitUpButton">Suit up</button>
+				</div>
+
+				<div class="col-sm-3">
+					
+				</div>
+		  		
+	  		</div>
+		</div>
+	</div>
+	<div class="row" id="question1" style="display: none;">
+		<div class="jumbotron">
+			<div class="row">
+
+				<div class="col-sm-3">
+		
+				</div>
+
+				<div class="col-sm-6">
+					<!-- Question 1 -->
+					<h1>Question 1:</h1>
+
+		  			<p>At what point in filming did Heath Ledger pass away?</p>
+
+					<hr>
+					
+					<label class="radio-inline answer"><input type="radio" name="optradio1">6 Months</label>
+					<label class="radio-inline answer"><input type="radio" name="optradio1">1 Year</label>
+					<label class="radio-inline answer"><input type="radio" name="optradio1">4 Years</label>
+					<label class="radio-inline answer"><input type="radio" name="optradio1" value="true">8 Years</label>
+		  			
+		  			<hr>
+
+	  				<button type="button" class="btn btn-secondary btn-lg" id="nextCrimeButton">Next Crime</button>
+				</div>
+
+				<div class="col-sm-3">
+					
+				</div>
+		  		
+	  		</div>
+		</div>
+	</div>
+</div>
+
+
+<script type="text/javascript" src="assets/javascript/app.js"></script>
+
+</body>
+</html>

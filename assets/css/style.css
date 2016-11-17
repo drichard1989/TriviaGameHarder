@@ -1,0 +1,17 @@
+body {
+	background-image: url(../images/background.jpg);
+	background-size: cover;
+	background-attachment: fixed;	
+}
+
+.jumbotron {
+	text-align: center;
+	background: rgba(169,169,169,.8);
+	margin-top: 10%;
+	color: black;
+}
+
+#timeAllowed{
+	text-align: center;
+	color: white;
+}
