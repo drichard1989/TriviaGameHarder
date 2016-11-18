@@ -1,6 +1,41 @@
 $(document).ready(function(){
 
 
+
+var questionPool = [
+	{
+		"Question" : "Example Question Text?",
+		"answerChoices": [
+							"Example Answer A", 
+							"Example Answer B", 
+							"Example Answer C", 
+							"Example Answer D",
+						],
+		"answer" : "A"
+	},
+	{
+		"Question" : "Example Question Text?",
+		"answerChoices": [
+							"Example Answer A", 
+							"Example Answer B", 
+							"Example Answer C", 
+							"Example Answer D",
+						],
+		"answer" : "A"
+	},
+	{
+		"Question" : "Example Question Text?",
+		"answerChoices": [
+							"Example Answer A", 
+							"Example Answer B", 
+							"Example Answer C", 
+							"Example Answer D",
+						],
+		"answer" : "A"
+	},
+];
+
+
 // Dont forget music! Spotify API for the dark knight?
 var totalNumberOfQuestions = 10;
 var correctAnswer = 0;
@@ -34,11 +69,59 @@ function decrement() {
 	}
 };
 
+function displayQuestion(index){
+
+	// This is my object with my questions and answers in it.
+	var object = questionPool[index];
+	// This is creating a variable named question equal to the array value of question for the object variable
+	var question = object["Question"];
+	// This is creating a variable named choices which is equal to the array value of answer choices within the object
+	var choices = object["answerChoices"];
+	// This is creating a variable named header equal to the jquery of adding html
+	var header = $("<h1>");
+	// This is taking <h1> and adding the text from the question variable
+	header.text(question);
+	// This is dynamically adding the updated header and appending it to the DOM in the #questionGroup id
+	$("#questionGroup").append(header);
+	
+
+	// This is running a for loop for the answer choices
+	for (var i = 0; i < choices.length; i++){
+		// Here we are creating a variable named label, and assigning the jquery html value of <label> to it.
+		var label = $("<label>");
+		// In the label variable that we are going to be dynamically inserting into the html, we are giving it a class of radio-inline and answer, making the buttons that sit next to one another on a row.
+		label.addClass("radio-inline answer");
+		// Simple console of the label variable, which should have the classes added above now.
+		console.log(label);
+		// creating a variable named input that will be creating buttons with.
+		var input= $("<input>");
+		// Adding data attributes to the input variable of type: "radio"
+		input.attr("type", "radio");
+		// This is creating all answer choices based on the amount of answers in the array, so for the ones we have now, should create 4 answers each
+		input.text(choices[i]);
+		// This is actually appending the input variable (answer choices) to the redefined label variable. 
+		label.append(input);
+		// dynamically adding the information using jquery to the dom using the append method.
+		$("#questionGroup").append(label);
+		console.log(input);
+
+	}
+	// console.log(question);
+	// console.log(object);
+	// console.log($("#questionGroup"));
+	// console.log(choices);
+}
+
 function suitUp(){
 	// play music
 	$("#headerRow").fadeOut(1000);
-	$("#question1").delay(1000).fadeIn(3000);
+	// $("#question1").delay(1000).fadeIn(3000);
+	displayQuestion(0);
 	run();
+
+
+
+
 };
 
 // Here, I would like to have a function that determines what 
@@ -81,3 +164,22 @@ function solveTheCrime(){
 
 
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
