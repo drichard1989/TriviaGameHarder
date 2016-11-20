@@ -13,74 +13,145 @@
 
 </head>
 <body>
-<div class="row">
-	<div class="col-sm-3"></div>
-	<div class="col-sm-6">
-		<div id="timeAllowed">
-		
-		</div>
-	</div>
+	
 	
 
-	<div class="col-sm-3"></div>
-</div>
-	<div class="row" id="headerRow">
-		<div class="jumbotron">
-			<div class="row">
 
+		<div class="jumbotron" id="headerRow">
+
+			<!-- Here, I want the jumbotron background to span across the screen, but the text to be condenced to the center.  -->
+			<div class="row">
+				<!-- Spacing Class -->
 				<div class="col-sm-3">
 		
 				</div>
 
-				<div class="col-sm-6">
+				<div class="col-sm-6">	
+					<!-- The title for the quiz -->
 					<h1>The Dark Knight</h1>
-
+					<!-- Line across the container -->
+					<hr>
+					<!-- Quiz description -->
 		  			<p>Here, you will need to become the worlds greatest detective to solve the answers to these questions. Gotham is counting on you, Bruce...</p>
+		  			<!-- Line across the container again -->
+					<hr>
 
+					<!-- Button to carry you to the next part of the quiz. -->
 		  			<button type="button" class="btn btn-secondary btn-lg" id="suitUpButton">Suit up</button>
+
 				</div>
 
+
+				<!-- Spacing Class -->
 				<div class="col-sm-3">
 					
 				</div>
 		  		
 	  		</div>
 		</div>
-	</div>
-	<div class="row" id="question" >
-		<div class="jumbotron">
+
+
+
+
+
+		<!-- Jumbotron that will appear once the quiz has been started.  -->
+		<div class="jumbotron" id = "questionsRow"	style = "display: none">
+			<!-- Row for the timer -->
 			<div class="row">
 
+				<!-- Spacing Class -->
+				<div class="col-sm-3">
+			
+				</div>
+
+				<!-- Container for the Timer -->
+				<div class="col-sm-6">
+					<div id="timeAllowed">
+					</div>
+				</div>
+
+			<!-- Spacing Class -->
+				<div class="col-sm-3">
+				
+				</div>
+	
+			</div>
+
+			<div class="row">
+				<!-- Spacing Class -->
 				<div class="col-sm-3">
 		
 				</div>
 
-				<div class="col-sm-6" id="questionGroup">
-					<!-- Question 1 -->
-				<!-- 	<h1>Question 1:</h1>
+				<div class="col-sm-6" id="questionGroup" >
 
-		  			<p>At what point in filming did Heath Ledger pass away?</p>
-
-					<hr>
-					
-					<label class="radio-inline answer"><input type="radio" name="optradio1">6 Months</label>
-					<label class="radio-inline answer"><input type="radio" name="optradio1">1 Year</label>
-					<label class="radio-inline answer"><input type="radio" name="optradio1">4 Years</label>
-					<label class="radio-inline answer"><input type="radio" name="optradio1" value="true">8 Years</label> -->
-		  			
-		  		<!-- 	<hr>
-
-	  				<button type="button" class="btn btn-secondary btn-lg" id="nextCrimeButton">Next Crime</button> -->
 				</div>
 
+
+				<!-- Spacing Class -->
 				<div class="col-sm-3">
 					
 				</div>
 		  		
 	  		</div>
+
+			<!-- Row underneath the questionsRow for the button. -->
+	  		<div class="row">
+				<!-- Spacing Class	 -->
+		  		<div class="col-sm-3">
+		  			
+		  		</div>
+				
+				<!-- Column that will house the button container and a line across the page. -->
+		  		<div class="col-sm-6">
+				  		<br>
+						<hr>
+						<br>
+		  			<div class="buttonContainer">
+							<button type="button" class="btn btn-secondary btn-lg" id="nextCrimeButton">Next Crime</button>
+					</div>
+				</div>	
+				
+				<!-- Spacing Class	 -->
+				<div class="col-sm-3">
+					
+				</div>
+
+	  		</div>
+
 		</div>
-	</div>
-</div>
+
+
+
+
+		<div class="jumbotron" id = "resultsRow" style = "display: none">
+			<div class="row">
+			<!-- Left Spacing -->
+			<div class="col-sm-3">
+				
+			</div>
+			
+			<!-- Class that will house the results once the quiz is done. -->
+			<div class="col-sm-6" id="resultsPage" style = "display: none">
+
+				<p>Correct Answer: <span id="correctAnswerAmount"></span> </p>
+				<p>Incorrect Answer: <span id="incorrectAnswerAmount"></span></p>
+				<p>Unanswered Questions: <span id="unansweredAmount"></span></p>	
+
+				<hr>
+				<button type="button" class="btn btn-secondary btn-lg" id="resetTheCrimeButton">Reset Quiz</button>
+			</div>
+
+			<!-- Right Spacing -->
+			<div class="col-sm-3">
+				
+			</div>
+
+			</div>
+		</div>
+
+
+
 
 
 <script type="text/javascript" src="assets/javascript/app.js"></script>

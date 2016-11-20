@@ -1,37 +1,105 @@
 $(document).ready(function(){
 
-
-
 var questionPool = [
 	{
-		"Question" : "Example Question Text?",
+		"Question" : "In what phase of the movie's filming timeline did Heath Ledger pass away?",
 		"answerChoices": [
-							"Example Answer A", 
-							"Example Answer B", 
-							"Example Answer C", 
-							"Example Answer D",
+							"After the film was completed filming", 
+							"Before his role was finished filming", 
+							"After the filming in the United States was finished", 
+							"2 weeks before the Academy Awards",
 						],
-		"answer" : "A"
+		"answer" : "After the filming in the United States was finished"
 	},
 	{
-		"Question" : "Example Question Text?",
+		"Question" : "Who designed the original concept of the Joker's makeup for the film?",
 		"answerChoices": [
-							"Example Answer A", 
-							"Example Answer B", 
-							"Example Answer C", 
-							"Example Answer D",
+							"Christopher Nolan", 
+							"Heath Ledger", 
+							"Mark Hamill", 
+							"DC Comics",
 						],
-		"answer" : "A"
+		"answer" : "Heath Ledger"
 	},
 	{
-		"Question" : "Example Question Text?",
+		"Question" : "In what city is this movie filmed?",
 		"answerChoices": [
-							"Example Answer A", 
-							"Example Answer B", 
-							"Example Answer C", 
-							"Example Answer D",
+							"New York", 
+							"Boston", 
+							"Chicago", 
+							"Seattle",
 						],
-		"answer" : "A"
+		"answer" : "Chicago"
+	},
+	{
+		"Question" : "While filming the chase scene with the Joker and the SWAT vans..",
+		"answerChoices": [
+							"One of only four IMAX cameras in the world was destroyed", 
+							"Gary Oldman broke a rib", 
+							"Christian Bale raged on set", 
+							"Christopher Nolan's foot was broken by a lead pipe",
+						],
+		"answer" : "One of only four IMAX cameras in the world was destroyed"
+	},
+	{
+		"Question" : "Bruce Wayne drives a Lamborghini Murcielago in the movie. The English word for murciélago is ..",
+		"answerChoices": [
+							"Protector", 
+							"Bat", 
+							"Glider", 
+							"Savior",
+						],
+		"answer" : "Bat"
+	},
+	{
+		"Question" : "This movie takes place how long after Batman Begins?",
+		"answerChoices": [
+							"8 Months", 
+							"2 Years", 
+							"3 Weeks", 
+							"1 Year",
+						],
+		"answer" : "8 Months"
+	},
+	{
+		"Question" : "The first four days of scheduled shooting resulted in no film being rolled. Instead, Christopher Nolan screened two films for the cast and crew with a break in between. What was the first film shown?",
+		"answerChoices": [
+							"Batman Begins", 
+							"A Clockwork Orange", 
+							"Citizen Kane", 
+							"Heat",
+						],
+		"answer" : "Heat"
+	},
+	{
+		"Question" : "The nine-minute suite composed for the Joker is based on two notes. What two notes comprise the piece?",
+		"answerChoices": [
+							"D and C for DC comics", 
+							"C and B for Christian Bale", 
+							"C and A", 
+							"E and C",
+						],
+		"answer" : "D and C for DC comics"
+	},
+	{
+		"Question" : "How many Academy Award nominations did this movie receive?",
+		"answerChoices": [
+							"3", 
+							"5", 
+							"6", 
+							"8",
+						],
+		"answer" : "8"
+	},
+	{
+		"Question" : "The Gotham City license plates were directly modeled off of what state's license plates?",
+		"answerChoices": [
+							"Illinois", 
+							"New York", 
+							"Arizona", 
+							"New Jersey",
+						],
+		"answer" : "Heat"
 	},
 ];
 
@@ -42,15 +110,16 @@ var correctAnswer = 0;
 var incorrectAnswer = 0;
 var timeAllowed = 95;
 var counter ;
-var unansweredQuestions = 0;
+var unansweredAmount = 0;
+var index = 0;
 
 function reset(){
 	correctAnswer = 0;
 	incorrectAnswer = 0;
 	unansweredQuestions = 0;
 	timeAllowed = 95;
-	$("#resultsSection").fadeOut(1000);
-	$("headerRow").delay(1000).fadeIn(5000);
+	$("#resultsRow").hide(1000);
+	$("#headerRow").show();
 	clearInterval(counter);
 	$('input[type="radio"]:checked').prop('checked', false);
 };
@@ -69,6 +138,8 @@ function decrement() {
 	}
 };
 
+
+
 function displayQuestion(index){
 
 	// This is my object with my questions and answers in it.
@@ -78,12 +149,12 @@ function displayQuestion(index){
 	// This is creating a variable named choices which is equal to the array value of answer choices within the object
 	var choices = object["answerChoices"];
 	// This is creating a variable named header equal to the jquery of adding html
-	var header = $("<h1>");
-	// This is taking <h1> and adding the text from the question variable
+	var header = $("<h2>");
+	// This is taking <h2> and adding the text from the question variable
 	header.text(question);
 	// This is dynamically adding the updated header and appending it to the DOM in the #questionGroup id
-	$("#questionGroup").append(header);
-	
+	$("#questionGroup").prepend(header);
+
 
 	// This is running a for loop for the answer choices
 	for (var i = 0; i < choices.length; i++){
@@ -92,36 +163,29 @@ function displayQuestion(index){
 		// In the label variable that we are going to be dynamically inserting into the html, we are giving it a class of radio-inline and answer, making the buttons that sit next to one another on a row.
 		label.addClass("radio-inline answer");
 		// Simple console of the label variable, which should have the classes added above now.
-		console.log(label);
 		// creating a variable named input that will be creating buttons with.
 		var input= $("<input>");
 		// Adding data attributes to the input variable of type: "radio"
 		input.attr("type", "radio");
+		input.attr("value", choices[i]);
 		// This is creating all answer choices based on the amount of answers in the array, so for the ones we have now, should create 4 answers each
-		input.text(choices[i]);
+		label.text(choices[i]);
 		// This is actually appending the input variable (answer choices) to the redefined label variable. 
 		label.append(input);
 		// dynamically adding the information using jquery to the dom using the append method.
 		$("#questionGroup").append(label);
-		console.log(input);
+		input.attr("name", "optradio");
 
-	}
-	// console.log(question);
-	// console.log(object);
-	// console.log($("#questionGroup"));
-	// console.log(choices);
-}
+	};
+};
 
 function suitUp(){
 	// play music
-	$("#headerRow").fadeOut(1000);
+	$("#questionsRow").show();
+	$("#headerRow").hide();
 	// $("#question1").delay(1000).fadeIn(3000);
-	displayQuestion(0);
+	displayQuestion(index);
 	run();
-
-
-
-
 };
 
 // Here, I would like to have a function that determines what 
@@ -129,39 +193,61 @@ function suitUp(){
 // so for example, for loop question[i], move on to the next 
 // question. This would be inside an event listener for button 
 // click of the nextCrimeButton
-function nextCrimeButton() {
+function nextCrime() {
+	$("#questionGroup").empty(); 
+	console.log(userInput);
+	console.log(answer);
 
+	var userInput = $("input:checked").val();
+	var answer = questionPool[index].answer;
+
+	if (answer == userInput){
+		correctAnswer++;
+	}
+
+	else {
+		incorrectAnswer++;
+	}
+
+
+	index++;
+	
+	// console.log(index);
+	if (index >= questionPool.length){
+		solveTheCrime();
+		
+	}
+	else{
+		displayQuestion(index);
+	}
+
+	console.log(correctAnswer);
+	console.log(incorrectAnswer);
 };
+
+
 function solveTheCrime(){
-	$("#question10").fadeOut(1000);
-	$("#resultsSection").delay(1000).fadeIn(5000);
+	$("#correctAnswerAmount").text(correctAnswer);
+		$("#incorrectAnswerAmount").text(incorrectAnswer);
+		var totalUnanswered = questionPool.length - (correctAnswer + incorrectAnswer);
+		$("#unansweredAmount").text(totalUnanswered);
+		$("#questionGroup").hide();
+		$("#questionsRow").hide();
+		$("#resultsRow").show();
+		$("#resultsPage").show();
+		console.log("crime solving working")
 
-	$("input:checked").each(function(){
-		if($(this).val() == "true"){
-			correctAnswer++;
-		}
-		else{
-			incorrectAnswer++;
-		};
-		unansweredQuestions = totalNumberOfQuestions -(correctAnswer + incorrectAnswer);
+	};
 
-	$("#results").html("<h3> Your Results</h3><hr><p>Correct Answers : "+ correctAnswer + "</p> <p>Incorrect Answers: " + incorrectAnswer + "</p><p>Unanswered Questions: " + unansweredQuestions + "</p>")
-	});
-};
 
 	$(document).on("click", "#suitUpButton", function(){
 		suitUp();
 	});
 
-	$(document).on("click", "#solveTheCrimeButton", function(){
-		solveTheCrime();
-	});
 
-	$(document).on("click", "#resetTheCrimeButton", function(){
-		reset();
-	});
+	$(document).on("click", "#resetTheCrimeButton", reset);
 
-
+	$("#nextCrimeButton").on("click", nextCrime);
 
 });
 
