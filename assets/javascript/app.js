@@ -203,10 +203,11 @@ function suitUp(){
 
 // This function runs every time the next crime button is clicked. Cycles through questions on the screen.
 function nextCrime() {
-
+	// Takes the checked radio buttons value and makes it a variable named userInput
 	var userInput = $("input:checked").val();
+	// Takes the question's answer that we are on in the cycle of the nth index value and saves it as a variable name of answer
 	var answer = questionPool[index].answer;
-	// Calculates the incorrect and correct answers by running through the checked inputs. 
+	// Calculates the incorrect and correct answers by running through the CHECKED inputs. very important that it only checks the checked values, as that is how you get to calculate unanswered, because it will just label unanswered values as incorrect instead. 
 	$("input:checked").each(function(){
 
 
@@ -217,7 +218,7 @@ function nextCrime() {
 		else {
 			incorrectAnswer++;
 		}
-
+		Calculates the unansweredAmount of questions by taking the total amount of questions and subtracting the correct and incorrect responses.
 		unansweredAmount = questionPool.length - (correctAnswer + incorrectAnswer);
 		console.log($(this).val());
 
@@ -225,8 +226,10 @@ function nextCrime() {
 
 	index++;
 	
+	// Empty's the id so that the next question is the only one that appears
 	$("#questionGroup").empty(); 
-	// console.log(index);
+
+	// If there are no more questions when the next crime button is solved, then go to the results page. 
 	if (index >= questionPool.length){
 		solveTheCrime();
 		
@@ -238,23 +241,23 @@ function nextCrime() {
 	
 };
 
-
+// Function that is run when either the time runs out or the user makes it to the end of the quiz.
 function solveTheCrime(){
+	// Writes the amount of correctAnswers, incorrect answers, and unanswered questions on the dom
 	$("#correctAnswerAmount").text(correctAnswer);
 	$("#incorrectAnswerAmount").text(incorrectAnswer);
-	
 	$("#unansweredAmount").text(unansweredAmount);
+
 	$("#questionGroup").fadeOut(1000);
 	$("#questionsRow").hide();
 	$("#resultsRow").delay(1000).fadeIn(1000);
 	$("#resultsPage").delay(1000).fadeIn(1000);
 	};
 
-
+	// Event listeners for all the buttons. Different variations of the same goal
 	$(document).on("click", "#suitUpButton", function(){
 		suitUp();
 	});
-
 
 	$(document).on("click", "#resetTheCrimeButton", reset);
 
