@@ -218,7 +218,7 @@ function nextCrime() {
 		else {
 			incorrectAnswer++;
 		}
-		Calculates the unansweredAmount of questions by taking the total amount of questions and subtracting the correct and incorrect responses.
+		// Calculates the unansweredAmount of questions by taking the total amount of questions and subtracting the correct and incorrect responses.
 		unansweredAmount = questionPool.length - (correctAnswer + incorrectAnswer);
 		console.log($(this).val());
 
