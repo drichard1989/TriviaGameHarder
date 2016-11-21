@@ -163,21 +163,24 @@ function displayQuestion(index){
 	for (var i = 0; i < choices.length; i++){
 		// Here we are creating a variable named label, and assigning the jquery html value of <label> to it.
 		var label = $("<label>");
-		// In the label variable that we are going to be dynamically inserting into the html, we are giving it a class of radio-inline and answer, making the buttons that sit next to one another on a row.
-		label.addClass("radio-inline answer");
+		// In the label variable that we are going to be dynamically inserting into the html, we are giving it a class of  answer, making the buttons that sit next to one another on a row.
+		label.addClass("answer");
 		// Simple console of the label variable, which should have the classes added above now.
 		// creating a variable named input that will be creating buttons with.
 		var input= $("<input>");
 		// Adding data attributes to the input variable of type: "radio"
+		input.attr("name", "optradio");
 		input.attr("type", "radio");
 		input.attr("value", choices[i]);
+		input.addClass("btn btn-default")
 		// This is creating all answer choices based on the amount of answers in the array, so for the ones we have now, should create 4 answers each
 		label.text(choices[i]);
 		// This is actually appending the input variable (answer choices) to the redefined label variable. 
-		label.append(input);
+
+		label.prepend(input);
+
 		// dynamically adding the information using jquery to the dom using the append method.
 		$("#questionGroup").append(label);
-		input.attr("name", "optradio");
 
 	};
 };
@@ -232,14 +235,14 @@ function nextCrime() {
 
 function solveTheCrime(){
 	$("#correctAnswerAmount").text(correctAnswer);
-		$("#incorrectAnswerAmount").text(incorrectAnswer);
-		var totalUnanswered = questionPool.length - (correctAnswer + incorrectAnswer);
-		$("#unansweredAmount").text(totalUnanswered);
-		$("#questionGroup").hide();
-		$("#questionsRow").hide();
-		$("#resultsRow").show();
-		$("#resultsPage").show();
-		console.log("crime solving working")
+	$("#incorrectAnswerAmount").text(incorrectAnswer);
+	var totalUnanswered = questionPool.length - (correctAnswer + incorrectAnswer);
+	$("#unansweredAmount").text(totalUnanswered);
+	$("#questionGroup").fadeOut(1000);
+	$("#questionsRow").hide();
+	$("#resultsRow").delay(1000).fadeIn(1000);
+	$("#resultsPage").delay(1000).fadeIn(1000);
+
 
 	};
 

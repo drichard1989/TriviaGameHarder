@@ -15,3 +15,11 @@ body {
 	text-align: center;
 	color: white;
 }
+
+label {
+	padding-left: 3px;
+}
+
+input {
+	margin: 0;
+}
