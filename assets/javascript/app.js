@@ -100,7 +100,7 @@ var questionPool = [
 							"Arizona", 
 							"New Jersey",
 						],
-		"answer" : "Heat"
+		"answer" : "Illinois"
 	},
 ];
 
