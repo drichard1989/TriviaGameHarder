@@ -118,10 +118,12 @@ function reset(){
 	incorrectAnswer = 0;
 	unansweredQuestions = 0;
 	timeAllowed = 95;
-	$("#resultsRow").hide(1000);
-	$("#headerRow").show();
+	$("#resultsRow").fadeOut(500);
+	$("#headerRow").delay(2000).fadeIn(3000);
 	clearInterval(counter);
 	$('input[type="radio"]:checked').prop('checked', false);
+	index = 0;
+	$("#questionGroup").empty(); 
 };
 
 function run() {
@@ -144,6 +146,7 @@ function displayQuestion(index){
 
 	// This is my object with my questions and answers in it.
 	var object = questionPool[index];
+	console.log(index);
 	// This is creating a variable named question equal to the array value of question for the object variable
 	var question = object["Question"];
 	// This is creating a variable named choices which is equal to the array value of answer choices within the object
@@ -181,11 +184,12 @@ function displayQuestion(index){
 
 function suitUp(){
 	// play music
-	$("#questionsRow").show();
-	$("#headerRow").hide();
-	// $("#question1").delay(1000).fadeIn(3000);
-	displayQuestion(index);
 	run();
+	$("#questionsRow").delay(1000).fadeIn(3000);
+	$("#questionGroup").delay(1000).fadeIn(3000);
+	$("#headerRow").fadeOut(1000);
+	displayQuestion(index);
+	
 };
 
 // Here, I would like to have a function that determines what 
@@ -194,9 +198,9 @@ function suitUp(){
 // question. This would be inside an event listener for button 
 // click of the nextCrimeButton
 function nextCrime() {
-	$("#questionGroup").empty(); 
-	console.log(userInput);
-	console.log(answer);
+	
+	
+	
 
 	var userInput = $("input:checked").val();
 	var answer = questionPool[index].answer;
@@ -212,6 +216,7 @@ function nextCrime() {
 
 	index++;
 	
+	$("#questionGroup").empty(); 
 	// console.log(index);
 	if (index >= questionPool.length){
 		solveTheCrime();
@@ -221,8 +226,7 @@ function nextCrime() {
 		displayQuestion(index);
 	}
 
-	console.log(correctAnswer);
-	console.log(incorrectAnswer);
+	
 };
 
 
