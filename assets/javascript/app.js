@@ -1,5 +1,6 @@
 $(document).ready(function(){
 
+
 var questionPool = [
 	{
 		"Question" : "In what phase of the movie's filming timeline did Heath Ledger pass away?",
@@ -32,7 +33,7 @@ var questionPool = [
 		"answer" : "Chicago"
 	},
 	{
-		"Question" : "While filming the chase scene with the Joker and the SWAT vans..",
+		"Question" : "While filming the chase scene with the Joker and the SWAT vans...",
 		"answerChoices": [
 							"One of only four IMAX cameras in the world was destroyed", 
 							"Gary Oldman broke a rib", 
@@ -42,7 +43,7 @@ var questionPool = [
 		"answer" : "One of only four IMAX cameras in the world was destroyed"
 	},
 	{
-		"Question" : "Bruce Wayne drives a Lamborghini Murcielago in the movie. The English word for murciélago is ..",
+		"Question" : "Bruce drives a Lamborghini Murcielago in the movie. The English word for Murcielago is ...",
 		"answerChoices": [
 							"Protector", 
 							"Bat", 
@@ -104,7 +105,7 @@ var questionPool = [
 ];
 
 
-// Dont forget music! Spotify API for the dark knight?
+// Global variables needed
 var totalNumberOfQuestions = 10;
 var correctAnswer = 0;
 var incorrectAnswer = 0;
@@ -112,7 +113,9 @@ var timeAllowed = 95;
 var counter ;
 var unansweredAmount = 0;
 var index = 0;
+var batmanMusic = new Audio(src = "assets/music/batmanMusic.mp3")
 
+// resets the quiz after the button is clicked on the last screen
 function reset(){
 	correctAnswer = 0;
 	incorrectAnswer = 0;
@@ -126,22 +129,22 @@ function reset(){
 	$("#questionGroup").empty(); 
 };
 
+// Sets the value that the quiz will count down at
 function run() {
 	counter = setInterval(decrement, 1000);
-
 };
-
+// Reduces the value, and prints that value on the DOM
 function decrement() {
 	timeAllowed--;
 	$("#timeAllowed").html("<h2>" + timeAllowed + "</h2>");
-
+	// If time = 0, push to the results screen by running the function solveTheCrime
 	if (timeAllowed == 0) {
 		solveTheCrime();
 	}
 };
 
 
-
+// This function will display the question at the nth index value of the object with my questions and answer choices in it
 function displayQuestion(index){
 
 	// This is my object with my questions and answers in it.
@@ -176,7 +179,7 @@ function displayQuestion(index){
 		// This is creating all answer choices based on the amount of answers in the array, so for the ones we have now, should create 4 answers each
 		label.text(choices[i]);
 		// This is actually appending the input variable (answer choices) to the redefined label variable. 
-
+		var endLabel = $("</label>");
 		label.prepend(input);
 
 		// dynamically adding the information using jquery to the dom using the append method.
@@ -185,37 +188,40 @@ function displayQuestion(index){
 	};
 };
 
+// This function runs when we want to start the quiz by clicking the button on the main screen
 function suitUp(){
-	// play music
+	
+	batmanMusic.play();
 	run();
 	$("#questionsRow").delay(1000).fadeIn(3000);
 	$("#questionGroup").delay(1000).fadeIn(3000);
 	$("#headerRow").fadeOut(1000);
+	// Displays question of the nth index value
 	displayQuestion(index);
 	
 };
 
-// Here, I would like to have a function that determines what 
-// question we are on by using a for loop to detect the id, 
-// so for example, for loop question[i], move on to the next 
-// question. This would be inside an event listener for button 
-// click of the nextCrimeButton
+// This function runs every time the next crime button is clicked. Cycles through questions on the screen.
 function nextCrime() {
-	
-	
-	
 
 	var userInput = $("input:checked").val();
 	var answer = questionPool[index].answer;
+	// Calculates the incorrect and correct answers by running through the checked inputs. 
+	$("input:checked").each(function(){
 
-	if (answer == userInput){
-		correctAnswer++;
-	}
 
-	else {
-		incorrectAnswer++;
-	}
+		if (answer == userInput){
+			correctAnswer++;
+		}
 
+		else {
+			incorrectAnswer++;
+		}
+
+		unansweredAmount = questionPool.length - (correctAnswer + incorrectAnswer);
+		console.log($(this).val());
+
+	});
 
 	index++;
 	
@@ -236,14 +242,12 @@ function nextCrime() {
 function solveTheCrime(){
 	$("#correctAnswerAmount").text(correctAnswer);
 	$("#incorrectAnswerAmount").text(incorrectAnswer);
-	var totalUnanswered = questionPool.length - (correctAnswer + incorrectAnswer);
-	$("#unansweredAmount").text(totalUnanswered);
+	
+	$("#unansweredAmount").text(unansweredAmount);
 	$("#questionGroup").fadeOut(1000);
 	$("#questionsRow").hide();
 	$("#resultsRow").delay(1000).fadeIn(1000);
 	$("#resultsPage").delay(1000).fadeIn(1000);
-
-
 	};
 
 
